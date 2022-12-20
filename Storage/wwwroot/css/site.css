@@ -15,4 +15,9 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: antiquewhite;
+}
+
+body > header > nav {
+    background-color: #1F2C4D;
 }
