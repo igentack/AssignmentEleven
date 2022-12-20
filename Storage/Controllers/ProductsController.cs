@@ -46,7 +46,6 @@ namespace Storage.Controllers
             {
                 return NotFound();
             }
-
             var searchResult = await _context.Product
                 .Where(e => e.Name.StartsWith(searchstring) || e.Category.StartsWith(searchstring))
                 .Select(e => new ProductViewModel

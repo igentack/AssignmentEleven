@@ -16,12 +16,13 @@ namespace Storage.Models
 
         [Required, StringLength(64, MinimumLength = 2)]
         public string Category { get; set; } = string.Empty;
+
         [StringLength(64, MinimumLength = 3)]
         public string Shelf { get; set; } = string.Empty;
 
         public int Count { get; set; }
         [StringLength(256, MinimumLength = 3)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
     }
 
