@@ -21,6 +21,12 @@ namespace Storage.Controllers
 
         public async Task<IActionResult> ProductsValue()
         {
+            
+            if (_context.Product == null)
+            {
+                return NotFound();
+            }
+
             var valueForProductsViewModel = await _context.Product.Select(e => new ProductViewModel
             {
                 Id = e.Id,
@@ -35,6 +41,12 @@ namespace Storage.Controllers
 
         public async Task<IActionResult> SearchDb(string searchstring)
         {
+
+            if (_context.Product == null)
+            {
+                return NotFound();
+            }
+
             var searchResult = await _context.Product
                 .Where(e => e.Name.StartsWith(searchstring) || e.Category.StartsWith(searchstring))
                 .Select(e => new ProductViewModel
