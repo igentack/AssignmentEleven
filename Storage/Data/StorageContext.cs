@@ -14,6 +14,6 @@ namespace Storage.Data
         {
         }
 
-        public DbSet<Storage.Models.Product> Product => Set<Product>();
+        public DbSet<Storage.Models.Product> Product { get; set; } = default!;
     }
 }

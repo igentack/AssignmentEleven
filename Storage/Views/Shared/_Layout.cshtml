@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Storage.styles.css" asp-append-version="true" />
 </head>
+
 <body>
+    @*@model IEnumerable<Storage.Models.Product>*@
     <header>
         <nav class="navbar trynavbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -32,18 +34,16 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="ProductsValue">Inventory Values</a>
                         </li>
                     </ul>
-                    <div class="dropdown float-end">
-                        <a class="btn btn-secondary dropdown-toggle text-light g-3" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        Category Links
-                      </a>
-
-                        <ul class="dropdown-menu  text-light">
-                        <li><a class="dropdown-item" href="#">Category</a></li>
-                        <li><a class="dropdown-item" href="#">Category 2</a></li>
-                        <li><a class="dropdown-item" href="#">Category 3</a></li>
-                      </ul>
-                    </div>
-                        <form asp-action="SearchDb" class="d-flex float-end" role="search">
+                    <form asp-action="SearchDb" class="d-flex float-end" asp-controller="Products" method="get">
+                        <select class="form-select" name="categorystring" aria-label="Välj kategori">
+                            <option selected>Välj kategori</option>
+                        @*    @foreach (var item in Model)
+                            {
+                                <option value="@item.Category.ToString()">@Html.DisplayFor(modelItem => item.Category)</option>                        
+                            }*@
+                        </select> &nbsp;&nbsp;
+                      
+             
                             <input class="form-control me-2" name="searchstring" type="text" placeholder="Sök">
                             <button class="btn btn-outline-info" type="submit">Search</button>
                         </form>

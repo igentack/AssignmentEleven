@@ -39,15 +39,16 @@ namespace Storage.Controllers
             return View(valueForProductsViewModel);
         }
 
-        public async Task<IActionResult> SearchDb(string searchstring)
+        public async Task<IActionResult> SearchDb(string searchstring, string categorystring)
         {
 
             if (_context.Product == null)
             {
                 return NotFound();
             }
+
             var searchResult = await _context.Product
-                .Where(e => e.Name.StartsWith(searchstring) || e.Category.StartsWith(searchstring))
+                .Where(e => e.Name.StartsWith(searchstring) || e.Category == categorystring)
                 .Select(e => new ProductViewModel
             {
                 Id = e.Id,
@@ -64,7 +65,7 @@ namespace Storage.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Product.ToListAsync());
+            return View(await _context.Product.ToListAsync());
         }
 
         // GET: Products/Details/5

@@ -22,9 +22,6 @@ body > header > nav {
     background-color: #1F2C4D;
 }
 
-.dropdown {
-    padding-right: 20px;
-}
 body > div > main > table > tbody > tr:nth-child(odd) {
     background-color: white;
  
@@ -32,4 +29,5 @@ body > div > main > table > tbody > tr:nth-child(odd) {
 
 body > div > main > table > tbody > tr:nth-child(even) {
     background-color: ghostwhite;
- 
+}
+
