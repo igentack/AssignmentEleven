@@ -12,8 +12,8 @@ using Storage.Data;
 namespace Storage.Migrations
 {
     [DbContext(typeof(StorageContext))]
-    [Migration("20221219203436_Annotations")]
-    partial class Annotations
+    [Migration("20221223085441_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,16 +32,14 @@ namespace Storage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
+                    b.Property<int>("Category")
                         .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasColumnType("int");
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 

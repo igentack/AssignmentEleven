@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -29,38 +30,47 @@ namespace Storage.Controllers
 
             var valueForProductsViewModel = await _context.Product.Select(e => new ProductViewModel
             {
+
                 Id = e.Id,
                 Name = e.Name,
                 Price = e.Price,
                 Count = e.Count,
+                Category= e.Category,
                 InventoryValue = e.Price * e.Count
+
             }).ToListAsync();
             
             return View(valueForProductsViewModel);
         }
 
-        public async Task<IActionResult> SearchDb(string searchstring, string categorystring)
+        public async Task<IActionResult> SearchDb(string searchstring, Category? categorystring)
         {
+            IQueryable<Product> searchResult = _context.Product;
 
-            if (_context.Product == null)
+            if (!string.IsNullOrWhiteSpace(searchstring))
             {
-                return NotFound();
+
+                searchResult = searchResult.Where(e => e.Name.StartsWith(searchstring));
             }
 
-            var searchResult = await _context.Product
-                .Where(e => e.Name.StartsWith(searchstring) || e.Category == categorystring)
-                .Select(e => new ProductViewModel
+            if (categorystring != null)
+            {
+
+                searchResult = searchResult.Where(e => e.Category == categorystring);
+            }
+
+
+            var model = searchResult.Select(e => new ProductViewModel
             {
                 Id = e.Id,
                 Name = e.Name,
                 Price = e.Price,
                 Count = e.Count,
                 InventoryValue = e.Price * e.Count
-            }).ToListAsync();
+            });
 
-            return View(nameof(ProductsValue), searchResult);
+            return View(nameof(ProductsValue),await model.ToListAsync());
         }
-
 
         // GET: Products
         public async Task<IActionResult> Index()

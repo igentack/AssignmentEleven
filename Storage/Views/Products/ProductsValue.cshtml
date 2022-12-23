@@ -4,16 +4,19 @@
     ViewData["Title"] = "Products Values";
 }
 
-<h1>Values</h1>
+<h1>Search & Inventory values</h1>
 
 <p>
-    <a asp-action="ProductsValue">Values for Products</a>
+    <a class="btn btn-dark" asp-action="Products">Products</a>
 </p>
 <table class="table">
     <thead class="bg-dark bg-opacity-75 text-light text-uppercase">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -34,6 +37,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
@@ -43,11 +49,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.InventoryValue)
                 </td>
-          @*      <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>*@
+                <td>
+                    <a class="btn-sm text-decoration-none btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn-sm text-decoration-none btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn-sm text-decoration-none btn-danger"
+                        asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

@@ -14,8 +14,7 @@ namespace Storage.Models
         [Display(Name = "Beställningsdatum"), DataType(DataType.Date)]
         public DateTime Orderdate { get; set; }
 
-        [Required, StringLength(64, MinimumLength = 2)]
-        public string Category { get; set; } = string.Empty;
+        public Category Category { get; set; }
 
         [StringLength(64, MinimumLength = 3)]
         public string Shelf { get; set; } = string.Empty;

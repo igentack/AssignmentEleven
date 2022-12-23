@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Storage.Data;
+using Storage.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +10,13 @@ builder.Services.AddDbContext<StorageContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("StorageContext") ?? throw new InvalidOperationException("Connection string 'StorageContext' not found.")));
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ICategorySelectListService, CategorySelectListService>();
+
+
+
+
+
 
 var app = builder.Build();
 
