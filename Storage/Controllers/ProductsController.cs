@@ -35,7 +35,7 @@ namespace Storage.Controllers
                 Name = e.Name,
                 Price = e.Price,
                 Count = e.Count,
-                Category= e.Category,
+                Category = e.Category,
                 InventoryValue = e.Price * e.Count
 
             }).ToListAsync();
@@ -66,6 +66,7 @@ namespace Storage.Controllers
                 Name = e.Name,
                 Price = e.Price,
                 Count = e.Count,
+                Category= e.Category,
                 InventoryValue = e.Price * e.Count
             });
 
